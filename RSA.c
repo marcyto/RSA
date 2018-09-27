@@ -186,11 +186,30 @@ void encrypt_choices(){
     list = caracter_to_number(list, string);
 	encrypt(list);
 }
+void decryption() {
+  FILE *file = fopen("Datas/public_key.txt", "r");
+  FILE *file_write = fopen("Datas/message_encrypted.txt", "w");
+  FILE *file_write_decrypted = fopen("Datas/message_decrypted.txt", "y");
+
+  int keys[5], i=0;
+
+  long long int value_decrypted;
+
+  while(fscanf(file, "%d", &keys[i]) != EOF){
+    i++;
+  }
+  {
+    
+  }
+
+
+
+}
 
 int main() {
 	int option;
     printf("Select one of the options below:\n");
-	printf("1 - Generate public key:\n2 - Encrypt:\n3 - Decription:\n");
+	printf("1 - Generate public key:\n2 - Encrypt:\n3 - Decryption:\n");
 	scanf("%d",&option);
 	if(option == 1){
 		generate_public_key();	
