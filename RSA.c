@@ -133,7 +133,7 @@ LIST *caracter_to_number (LIST *list, char string[]) {
 		if(string[i] == 32) {
 			list = insert_end(list, 26);
 		} else {
-        	list = insert_end(list, (string[i]) - 97);
+        		list = insert_end(list, (string[i]) - 97);
 		}
     }
     return list;
@@ -186,11 +186,37 @@ void encrypt_choices(){
     list = caracter_to_number(list, string);
 	encrypt(list);
 }
+void Decryption(){
+	FILE *file = fopen("Datas/public_key.txt", "r");
+	FILE *file_encrypted = fopen("Datas/message_encrypted.txt", "w");
+	FILE *file_write = fopen("Datas/message_in_int.txt", 
+	
+	LIST *list = create_list();
+	
+	int keys[5];
+	long long int var;
+	long long int aux;
+	
+	while(fscanf(file, "%d", &keys[i]) != EOF){
+		i++;
+	}
+	while(fscanf(file_encrypted, "%d", &var) != EOF){
+		list = insert_end(list, var);
+	}
+	NODE *current = list->head;
+	while(current != NULL){
+		aux = pow(current->data, keys[4]);
+		fprintf(file_write, "%lld ", aux % keys[0]);
+		current = current->next;
+	}
+
+}
+	
 
 int main() {
 	int option;
     printf("Select one of the options below:\n");
-	printf("1 - Generate public key:\n2 - Encrypt:\n3 - Decription:\n");
+	printf("1 - Generate public key:\n2 - Encrypt:\n3 - Decryption:\n");
 	scanf("%d",&option);
 	if(option == 1){
 		generate_public_key();	
